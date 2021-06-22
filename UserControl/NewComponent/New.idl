@@ -1,0 +1,9 @@
+namespace NewComponent
+{
+    [default_interface]
+    runtimeclass New
+    {
+        New();
+    Double add(Double firstNumber, Double secondNumber);
+    }
+}

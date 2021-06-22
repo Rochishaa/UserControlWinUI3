@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+	<metadata>
+		<id>NewComp</id>
+		<version>0.1.0-prerelease</version>
+		<authors>Contoso Math Inc.</authors>
+		<description>A simple component with basic add operation</description>
+		<dependencies>
+			<group targetFramework=".NETCoreApp3.0" />
+			<group targetFramework="UAP10.0" />
+			<group targetFramework=".NETFramework4.6" />
+			<group targetFramework="net5.0">
+				<dependency id="Microsoft.Windows.CsWinRT" version="1.2.6" exclude="Build,Analyzers" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<!--Support netcore3, uap, net46+, net5, c++ -->
+		<file src="..\..\_build\x64\Debug\NewComponent\bin\NewComponent\NewComponent.winmd" target="lib\netcoreapp3.0\NewComponent.winmd" />
+		<file src="..\..\_build\x64\Debug\NewComponent\bin\NewComponent\NewComponent.winmd" target="lib\uap10.0\NewComponent.winmd" />
+		<file src="..\..\_build\x64\Debug\NewComponent\bin\NewComponent\NewComponent.winmd" target="lib\net46\NewComponent.winmd" />
+		<file src="..\..\_build\x64\Debug\NewProj\bin\NewProj.dll" target="lib\net5.0\NewProj.dll" />
+		<file src="..\..\_build\x64\Debug\NewComponent\bin\NewComponent\NewComponent.dll" target="runtimes\win10-x64\native\NewComponent.dll" />
+	</files>
+</package>

@@ -1,0 +1,10 @@
+namespace NewComponent
+{
+    [default_interface]
+    runtimeclass NewControl : Microsoft.UI.Xaml.Controls.Control
+    {
+      NewControl();
+        static Microsoft.UI.Xaml.DependencyProperty LabelProperty{ get; };
+        String Label;
+    }
+}

@@ -1,0 +1,9 @@
+namespace NewComponent
+{
+    [default_interface]
+    runtimeclass MyControl : Microsoft.UI.Xaml.Controls.UserControl
+    {
+        MyControl();
+        Int32 MyProperty;
+    }
+}

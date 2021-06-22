@@ -1,0 +1,33 @@
+<!--
+  Copyright (c) Microsoft Corporation. Licensed under the MIT License
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <Import Project="$(MSBuildThisFileDirectory)Microsoft.Xaml.Tooling.targets" />
+
+    <PropertyGroup>
+        <ResolveReferencesDependsOn Condition="'$(ProjectReunionVerifyWinrtRuntimeVersion)'!='false' and '$(MSBuildProjectExtension)'=='.csproj'">
+            $(ResolveAssemblyReferencesDependsOn);ProjectReunionVerifyWinrtRuntimeVersion
+        </ResolveReferencesDependsOn>
+    </PropertyGroup>
+    
+    <Target Name="ProjectReunionVerifyWinrtRuntimeVersion" DependsOnTargets="ResolvePackageAssets;ResolveAssemblyReferences">
+        <ItemGroup>
+            <_RuntimeCopyLocalItemsWithNuGetPackageVersion Include="@(RuntimeCopyLocalItems->HasMetadata('NuGetPackageVersion'))" />
+            <_WinrtRuntimeCompatible Include="@(_RuntimeCopyLocalItemsWithNuGetPackageVersion)" Condition="'%(Filename)%(Extension)'=='WinRT.Runtime.dll' and %(NuGetPackageVersion)&gt;1.2" />
+            <_ReferenceWithAssemblyVersion Include="@(Reference->HasMetadata('AssemblyVersion'))" />
+            <_WinrtRuntimeIncompatible Include="@(_ReferenceWithAssemblyVersion)" Condition="'%(Filename)%(Extension)'=='WinRT.Runtime.dll' and %(AssemblyVersion)&lt;1.2" />
+        </ItemGroup>
+        <Error Condition="'@(_WinrtRuntimeIncompatible)'!='' and '@(_WinrtRuntimeCompatible)'==''"
+            Text="This version of Project Reunion requires WinRT.Runtime.dll version 1.2 or greater. 
+    Please update to .NET 5.0.6 SDK or later.  
+    Or add a temporary Microsoft.Windows.SDK.NET.Ref FrameworkReference of version 10.0.*.16 or later.
+    For example,
+        &lt;ItemGroup&gt;
+            &lt;FrameworkReference Update=&quot;Microsoft.Windows.SDK.NET.Ref&quot; RuntimeFrameworkVersion=&quot;10.0.18362.16&quot; /&gt;
+            &lt;FrameworkReference Update=&quot;Microsoft.Windows.SDK.NET.Ref&quot; TargetingPackVersion=&quot;10.0.18362.16&quot; /&gt;
+        &lt;/ItemGroup&gt;
+" />
+    </Target>
+
+</Project>

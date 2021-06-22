@@ -1,0 +1,14 @@
+UserControl/_build/
+*.suo
+*.db
+*.ipch
+UserControl/NewComponent/Debug/
+UserControl/NewComponent/Generated Files/
+UserControl/NewProj/obj/
+*.nupkg
+UserControl/NewComponent/x64/
+WinUI3MainApp/.vs/NewApp/DesignTimeBuild/.dtbcache.v2
+WinUI3MainApp/NewApp/NewApp (Package)/bin/
+WinUI3MainApp/NewApp/NewApp (Package)/obj/
+WinUI3MainApp/NewApp/NewApp/bin/
+WinUI3MainApp/NewApp/NewApp/obj/
